@@ -1,0 +1,16 @@
+B:\PEWorkspace\Code\CharacterControl\Characters\SoldierNPC.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\SoldierNPC.obj
+B:\PEWorkspace\Code\CharacterControl\Characters\SoldierNPCAnimationSM.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\SoldierNPCAnimationSM.obj
+B:\PEWorkspace\Code\CharacterControl\Characters\SoldierNPCBehaviorSM.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\SoldierNPCBehaviorSM.obj
+B:\PEWorkspace\Code\CharacterControl\Characters\SoldierNPCMovementSM.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\SoldierNPCMovementSM.obj
+B:\PEWorkspace\Code\CharacterControl\Client\ClientSpaceShip.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\ClientSpaceShip.obj
+B:\PEWorkspace\Code\CharacterControl\Client\ClientSpaceShipControls.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\ClientSpaceShipControls.obj
+B:\PEWorkspace\Code\CharacterControl\ClientCharacterControlGame.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\ClientCharacterControlGame.obj
+B:\PEWorkspace\Code\CharacterControl\ClientGameObjectManagerAddon.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\ClientGameObjectManagerAddon.obj
+B:\PEWorkspace\Code\CharacterControl\Events\Events.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\Events.obj
+B:\PEWorkspace\Code\CharacterControl\GameObjectManagerAddon.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\GameObjectManagerAddon.obj
+B:\PEWorkspace\Code\CharacterControl\GlobalRegistry.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\GlobalRegistry.obj
+B:\PEWorkspace\Code\CharacterControl\ServerCharacterControlGame.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\ServerCharacterControlGame.obj
+B:\PEWorkspace\Code\CharacterControl\ServerGameObjectManagerAddon.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\ServerGameObjectManagerAddon.obj
+B:\PEWorkspace\Code\CharacterControl\Tank\ClientTank.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\ClientTank.obj
+B:\PEWorkspace\Code\CharacterControl\WayPoint.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\WayPoint.obj
+B:\PEWorkspace\Code\CharacterControl\main.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\CharacterControl-win32d3d9\main.obj

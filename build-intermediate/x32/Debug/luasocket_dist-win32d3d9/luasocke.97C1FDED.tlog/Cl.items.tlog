@@ -1,0 +1,13 @@
+B:\PEWorkspace\Code\luasocket_dist\src\auxiliar.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\auxiliar.obj
+B:\PEWorkspace\Code\luasocket_dist\src\buffer.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\buffer.obj
+B:\PEWorkspace\Code\luasocket_dist\src\except.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\except.obj
+B:\PEWorkspace\Code\luasocket_dist\src\inet.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\inet.obj
+B:\PEWorkspace\Code\luasocket_dist\src\io.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\io.obj
+B:\PEWorkspace\Code\luasocket_dist\src\luasocket.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\luasocket.obj
+B:\PEWorkspace\Code\luasocket_dist\src\mime.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\mime.obj
+B:\PEWorkspace\Code\luasocket_dist\src\options.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\options.obj
+B:\PEWorkspace\Code\luasocket_dist\src\select.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\select.obj
+B:\PEWorkspace\Code\luasocket_dist\src\tcp.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\tcp.obj
+B:\PEWorkspace\Code\luasocket_dist\src\timeout.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\timeout.obj
+B:\PEWorkspace\Code\luasocket_dist\src\udp.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\udp.obj
+B:\PEWorkspace\Code\luasocket_dist\src\wsocket.c;B:\PEWorkspace\build-intermediate\x32\Debug\luasocket_dist-win32d3d9\wsocket.obj

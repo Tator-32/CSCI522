@@ -1,0 +1,6 @@
+LevelLoader.CreateGameObject("PEObject0_transf",0.141789, 0.0, 0.989897, 0.0, 0.0, 1.0, -0.0, 0.0, -0.989897, -0.0, 0.141789, 0.0, 870.776968, 0.0, 3203.344372, 1.0, 'TutorialLevelBG.x_PEObject0_transf.lua', 'ExportTutorial',0x688790b0, 0xdc1a11ef, 0x9968e865, 0x3893a78a)
+
+LevelLoader.CreateGameObject("PEObject1_transf",0.617141, 0.0, 0.786853, 0.0, 0.0, 1.0, -0.0, 0.0, -0.786853, -0.0, 0.617141, 0.0, 2314.736344, 0.0, 2508.954737, 1.0, 'TutorialLevelBG.x_PEObject1_transf.lua', 'ExportTutorial',0x7f7acf30, 0xdc1a11ef, 0x819de865, 0x3893a78a)
+
+LevelLoader.CreateGameObject("PEObject2_transf",-0.434589, 0.0, 0.900629, 0.0, 0.0, 1.0, -0.0, 0.0, -0.900629, -0.0, -0.434589, 0.0, -750.352625, 0.0, 3077.438123, 1.0, 'TutorialLevelBG.x_PEObject2_transf.lua', 'ExportTutorial',0x8919e20f, 0xdc1a11ef, 0xa7bee865, 0x3893a78a)
+
