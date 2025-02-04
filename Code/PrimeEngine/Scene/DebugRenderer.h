@@ -53,6 +53,7 @@ struct DebugRenderer : public SceneNode
 		int &threadOwnershipMask);
 	void createRootLineMesh();
 	void createLineMesh(bool hasTransform, const Matrix4x4 &transform, float *pRawData, int numInRawData, float timeToLive, float scale = 1.0f);
+	void createBoundingBox(const Matrix4x4 &worldTransform, const Vector3 &min, const Vector3 &max, const Vector3 &color,float timeToLive);
 
 	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_PRE_GATHER_DRAWCALLS);
 	virtual void do_PRE_GATHER_DRAWCALLS(Events::Event *pEvt);
@@ -78,7 +79,7 @@ struct DebugRenderer : public SceneNode
 		Handle m_hLineMeshes[2]; // we will alternate between two meshes so that we can generate new one while old one is in draw call
 		Handle m_hLineMeshInstances[2];
 		int m_currentlyDrawnLineMesh;
-		static const int NUM_LineLists = (5 * 1024);
+		static const int NUM_LineLists = (5 * 1024); // used to be 5 * 1024
 		Array<Array<float> > m_lineLists;
 		float m_lineListLifetimes[NUM_LineLists];
 		int m_availableLineLists[NUM_LineLists];

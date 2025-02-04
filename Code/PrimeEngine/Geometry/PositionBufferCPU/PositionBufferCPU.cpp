@@ -36,12 +36,19 @@ void PositionBufferCPU::ReadPositionBuffer(const char *filename, const char *pac
 
 	float factor = version == 0 ? (1.0f / 100.0f) : 1.0f;
 
+	m_boundingBox.reset(6);
+	for (int i = 0; i < 3; ++i)
+	{
+		m_boundingBox.add(PrimitiveTypes::Constants::c_MaxFloat32);
+		m_boundingBox.add(-PrimitiveTypes::Constants::c_MaxFloat32);
+	} 
 	// Read all values
 	PrimitiveTypes::Float32 val;
 	for (int i = 0; i < n * 3; i++)
 	{
 		f.nextFloat32(val);
 		m_values.add(val * factor);
+		findMinMax(val * factor, i);
 	}
 }
 
@@ -66,4 +73,17 @@ void PositionBufferCPU::createNormalizeBillboardCPUBufferXYWithPtOffsets(Primiti
 	m_values.add(1.0f+dx); m_values.add(1.0f+dy); m_values.add(0.0f);
 	m_values.add(-1.0f+dx); m_values.add(1.0f+dy); m_values.add(0.0f);
 	
+}
+
+void PositionBufferCPU::findMinMax(PrimitiveTypes::Float32 value, int i)
+{
+	int j = i % 3;
+	if (value < m_boundingBox[j * 2])
+	{
+		m_boundingBox[j * 2] = value;
+	}
+	if (value > m_boundingBox[j * 2 + 1])
+	{
+		m_boundingBox[j * 2 + 1] = value;
+	}
 }

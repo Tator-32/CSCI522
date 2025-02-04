@@ -146,7 +146,7 @@ void SoldierNPCBehaviorSM::do_PRE_RENDER_needsRC(PE::Events::Event *pEvt)
 				{
 					Vector3 target = pWP->m_base.getPos();
 					Vector3 pos = base.getPos();
-					Vector3 color(1.0f, 1.0f, 0);
+					Vector3 color(1.0f, 1.0f, 1.0f);
 					Vector3 linepts[] = {pos, color, target, color};
 					
 					DebugRenderer::Instance()->createLineMesh(true, base,  &linepts[0].m_x, 2, 0);// send event while the array is on the stack

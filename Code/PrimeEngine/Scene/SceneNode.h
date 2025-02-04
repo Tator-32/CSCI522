@@ -39,6 +39,8 @@ struct SceneNode : public Component
 	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_CALCULATE_TRANSFORMATIONS);
 	virtual void do_CALCULATE_TRANSFORMATIONS(Events::Event *pEvt);
 
+	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_PRE_RENDER_needsRC);
+	virtual void do_PRE_RENDER_needsRC(Events::Event *pEvt);
 
 	Handle m_hComponentParent;
 	

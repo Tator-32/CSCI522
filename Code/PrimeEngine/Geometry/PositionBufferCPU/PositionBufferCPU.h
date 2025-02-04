@@ -38,11 +38,16 @@ struct PositionBufferCPU : PE::PEAllocatableAndDefragmentable
 	// start of the vertex data in memory
 	void *getStartAddress(){return &m_values[0];}
 
+	void findMinMax(PrimitiveTypes::Float32 value, int i);
+
 	PrimitiveTypes::UInt32 getByteSize(){return m_values.m_size * sizeof(PrimitiveTypes::Float32);}
 
 	Array<PrimitiveTypes::Float32> m_values;
 
 	PE::GameContext *m_pContext;
+
+	// x_min, x_max, y_min, y_max, z_min, z_max
+	Array<PrimitiveTypes::Float32> m_boundingBox;
 };
 
 #endif

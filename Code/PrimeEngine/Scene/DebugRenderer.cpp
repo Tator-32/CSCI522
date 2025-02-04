@@ -174,6 +174,44 @@ void DebugRenderer::createLineMesh(bool hasTransform, const Matrix4x4 &transform
 	
 }
 
+void DebugRenderer::createBoundingBox(const Matrix4x4& worldTransform, const Vector3& min, const Vector3& max, const Vector3& color, float timeToLive)
+{
+	Vector3 corners[] = {
+	   Vector3(min.m_x, min.m_y, min.m_z),
+	   Vector3(max.m_x, min.m_y, min.m_z),
+	   Vector3(max.m_x, max.m_y, min.m_z),
+	   Vector3(min.m_x, max.m_y, min.m_z),
+	   Vector3(min.m_x, min.m_y, max.m_z),
+	   Vector3(max.m_x, min.m_y, max.m_z),
+	   Vector3(max.m_x, max.m_y, max.m_z),
+	   Vector3(min.m_x, max.m_y, max.m_z)
+	};
+
+	// Transform corners to world space
+	for (int i = 0; i < 8; ++i) {
+		corners[i] = worldTransform * corners[i];
+	}
+
+	Vector3 linePts[] = {
+		corners[0], color, corners[1], color,
+		corners[1], color, corners[2], color,
+		corners[2], color, corners[3], color,
+		corners[3], color, corners[0], color,
+
+		corners[4], color, corners[5], color,
+		corners[5], color, corners[6], color,
+		corners[6], color, corners[7], color,
+		corners[7], color, corners[4], color,
+
+		corners[0], color, corners[4], color,
+		corners[1], color, corners[5], color,
+		corners[2], color, corners[6], color,
+		corners[3], color, corners[7], color
+	};
+
+	createLineMesh(false, Matrix4x4(), &linePts[0].m_x, 24, timeToLive);
+}
+
 void DebugRenderer::createTextMesh(const char *str, bool isOverlay2D, bool is3D, bool is3DFacedToCamera, bool is3DFacedToCameraLockedYAxis, float timeToLive, Vector3 pos, float scale, int &threadOwnershipMask)
 {
 	if (EnableDebugRendering && m_numAvaialble)

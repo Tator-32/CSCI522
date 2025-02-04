@@ -190,10 +190,12 @@ int ClientCharacterControlGame::initGame()
 	#endif
     
     m_pContext->getGPUScreen()->AcquireRenderContextOwnership(m_pContext->m_gameThreadThreadOwnershipMask);
+
+
 	
-    bool spawnALotOfMeshes = false;
+    bool spawnALotOfMeshes = true;
     
-    int maxX = 10; // maybe need more to get framerate lower
+    int maxX = 20; // maybe need more to get framerate lower
     
     if (spawnALotOfMeshes)
     {
@@ -206,6 +208,7 @@ int ClientCharacterControlGame::initGame()
                 pMainSN->addDefaultComponents();
         
                 pMainSN->m_base.setPos(Vector3(ix * 2.0f, 0, -10.0f -iy * 2.0f));
+				printf("ix = %f, iy = %f\n", ix * 2.0f, iy * 2.0f);
         
                 PE::Handle hImrodMeshInst = PE::Handle("MeshInstance", sizeof(MeshInstance));
                 MeshInstance *pImrodMeshInst = new(hImrodMeshInst) MeshInstance(*m_pContext, m_arena, hImrodMeshInst);
@@ -214,7 +217,7 @@ int ClientCharacterControlGame::initGame()
 				pImrodMeshInst->initFromFile("imrod.x_imrodmesh_mesh.mesha", "Default", m_pContext->    m_gameThreadThreadOwnershipMask);
 
                 pMainSN->addComponent(hImrodMeshInst);
-        
+
                 RootSceneNode::Instance()->addComponent(hSN);
             }
         }
@@ -250,9 +253,9 @@ int ClientCharacterControlGame::initGame()
 #if PE_PLAT_IS_PSVITA // do it for ps3 becasue right now communication between pyClient and ps3 is not working
 	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('ccontrollvl0.x_level.levela', 'CharacterControl')");
 #endif
-	// m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('tutorial6.x_level.levela', 'CharacterControl')");
+	// m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('ccontrollvl0.x_level.levela', 'CharacterControl')");
 
-	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('ccontrollvl0.x_level.levela', 'CharacterControl')");
+	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('basic.x_level.levela', 'CharacterControl')");
 
 	m_pContext->getGPUScreen()->AcquireRenderContextOwnership(m_pContext->m_gameThreadThreadOwnershipMask);
 	
