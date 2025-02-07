@@ -197,24 +197,41 @@ void SingleHandler_DRAW::do_GATHER_DRAWCALLS(Events::Event *pEvt)
     
     // debug testing of instance culling. do collision check instead.
     // remove false && to enable
-    if (false && pMeshCaller->m_performBoundingVolumeCulling)
+    if (pMeshCaller->m_performBoundingVolumeCulling && pDrawEvent)
     {
         pMeshCaller->m_numVisibleInstances = 0;
         
         for (int iInst = 0; iInst < pMeshCaller->m_instances.m_size; ++iInst)
         {
             MeshInstance *pInst = pMeshCaller->m_instances[iInst].getObject<MeshInstance>();
-            if (iInst % 2)
-            {
-                pInst->m_culledOut = false;
-                ++pMeshCaller->m_numVisibleInstances;
-            }
-            else
-            {
-                pInst->m_culledOut = true;
-            }
+            // Get bounding box of mesh
+			PositionBufferCPU *pPosBuffer = pMeshCaller->m_hPositionBufferCPU.getObject<PositionBufferCPU>();
+			Matrix4x4 worldMatrix;
+			Handle hParentSNInst = pInst->getFirstParentByType<SceneNode>();
+			if (!hParentSNInst.isValid())
+			{
+				continue;
+			}
+			worldMatrix = hParentSNInst.getObject<SceneNode>()->m_worldTransform;
+			
+
+			if (pDrawEvent->m_frustum.isBoxInside(pPosBuffer->m_boundingBox, worldMatrix))
+			{
+				pMeshCaller->m_numVisibleInstances++;
+				pInst->m_culledOut = false;
+			}
+			else
+			{
+				pInst->m_culledOut = true;
+			}
+
         }
     }
+
+	// printf("Culled:%d\n", pMeshCaller->m_instances.m_size - pMeshCaller->m_numVisibleInstances);
+
+	if(pMeshCaller->m_numVisibleInstances == 0)
+		return; // no visible instances
     
 
 	DrawList *pDrawList = pDrawEvent ? DrawList::Instance() : DrawList::ZOnlyInstance();
@@ -455,7 +472,7 @@ void SingleHandler_DRAW::gatherDrawCallsForRange(Mesh *pMeshCaller, DrawList *pD
 				}
 
                 iSrcInstanceInBoneSegment = iSrcInstance; // reset instance id for each bone segment since we want to process same instances
-                while(pMeshCaller->m_instances[iSrcInstanceInBoneSegment].getObject<MeshInstance>()->m_culledOut)
+                while(iSrcInstanceInBoneSegment < pMeshCaller->m_instances.m_size && pMeshCaller->m_instances[iSrcInstanceInBoneSegment].getObject<MeshInstance>()->m_culledOut)
                     ++iSrcInstanceInBoneSegment;
                 
 				pDrawList->beginDrawCallRecord(curMat.m_dbgName);
@@ -677,6 +694,8 @@ void SingleHandler_DRAW::addSAa_InstancedAnimation_CSOnly_Pass2_and_CSCPU_Pass1_
 void SingleHandler_DRAW::addNonInstancedTechShaderActions(Mesh *pMeshCaller, IndexRange &ir, int iBoneSegment, int iRenderGroup, int iSrcInstance, bool hasBoneSegments, DrawList *pDrawList, Effect *pEffect, const Matrix4x4 &evtProjectionViewWorldMatrix,
 	int vbCount, Vector4 vbWeights)
 {
+	if(iSrcInstance >= pMeshCaller->m_instances.m_size)
+		return;
 	MeshInstance *pInst = pMeshCaller->m_instances[iSrcInstance].getObject<MeshInstance>();
     
     PEASSERT( !pInst->m_culledOut, "we should not be calling this method for culled out meshes");

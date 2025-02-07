@@ -17,6 +17,8 @@
 
 #include "PrimeEngine/Utils/Networkable.h"
 
+#include "Frustum.h"
+
 // Sibling/Children includes
 #include "Event.h"
 
@@ -64,6 +66,8 @@ struct Event_GATHER_DRAWCALLS : public Event {
 	Matrix4x4 m_projectionTransform;
 	Matrix4x4 m_parentWorldTransform;
 	Matrix4x4 m_viewInvTransform;
+
+	PE::Components::Frustum m_frustum;
 
 	Vector3 m_eyePos;
 	Vector3 m_eyeDir;

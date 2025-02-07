@@ -14,6 +14,7 @@
 #include "../Events/Component.h"
 #include "../Utils/Array/Array.h"
 #include "PrimeEngine/Math/CameraOps.h"
+#include "Frustum.h"
 
 #include "SceneNode.h"
 
@@ -45,6 +46,7 @@ struct CameraSceneNode : public SceneNode
 	Matrix4x4 m_worldToViewTransform2;
 	Matrix4x4 m_worldTransform2;
 	Matrix4x4 m_viewToProjectedTransform; // objects in local (view) space are multiplied by this to get them to screen space
+	Frustum m_frustum;
 	float m_near, m_far;
 };
 }; // namespace Components

@@ -61,6 +61,9 @@ void CameraSceneNode::do_CALCULATE_TRANSFORMATIONS(Events::Event *pEvt)
 	m_viewToProjectedTransform = CameraOps::CreateProjectionMatrix(verticalFov, 
 		aspect,
 		m_near, m_far);
+
+	// m_frustum.extractPlanes(m_worldToViewTransform, m_viewToProjectedTransform);
+	m_frustum.extractPlanes(pos, target, up, verticalFov, aspect, m_near, m_far);
 	
 	SceneNode::do_CALCULATE_TRANSFORMATIONS(pEvt);
 

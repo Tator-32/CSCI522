@@ -1,2 +1,6 @@
-﻿  SceneNode.cpp
+﻿  SH_DRAW.cpp
+B:\PEWorkspace\Code\PrimeEngine\Scene\SH_DRAW.cpp(204,35): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\PrimeEngine\Scene\SH_DRAW.cpp(468,57): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\PrimeEngine\Scene\SH_DRAW.cpp(475,49): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\PrimeEngine\Scene\SH_DRAW.cpp(697,18): warning C4018: '>=': signed/unsigned mismatch
   PrimeEngine-win32d3d9.vcxproj -> B:\PEWorkspace\build\PrimeEngine-win32d3d9.lib

@@ -208,7 +208,7 @@ int ClientCharacterControlGame::initGame()
                 pMainSN->addDefaultComponents();
         
                 pMainSN->m_base.setPos(Vector3(ix * 2.0f, 0, -10.0f -iy * 2.0f));
-				printf("ix = %f, iy = %f\n", ix * 2.0f, iy * 2.0f);
+				// printf("ix = %f, iy = %f\n", ix * 2.0f, iy * 2.0f);
         
                 PE::Handle hImrodMeshInst = PE::Handle("MeshInstance", sizeof(MeshInstance));
                 MeshInstance *pImrodMeshInst = new(hImrodMeshInst) MeshInstance(*m_pContext, m_arena, hImrodMeshInst);
@@ -255,7 +255,7 @@ int ClientCharacterControlGame::initGame()
 #endif
 	// m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('ccontrollvl0.x_level.levela', 'CharacterControl')");
 
-	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('basic.x_level.levela', 'CharacterControl')");
+	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('ccontrollvl0.x_level.levela', 'CharacterControl')");
 
 	m_pContext->getGPUScreen()->AcquireRenderContextOwnership(m_pContext->m_gameThreadThreadOwnershipMask);
 	
