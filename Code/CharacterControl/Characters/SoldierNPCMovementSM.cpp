@@ -135,24 +135,76 @@ void SoldierNPCMovementSM::do_UPDATE(PE::Events::Event *pEvt)
 
 			bool reached = true;
 			if (dsqr > 0.01f)
-			{
-				// not at the spot yet
-				Event_UPDATE *pRealEvt = (Event_UPDATE *)(pEvt);
-				float speed = (m_state == WALKING_TO_TARGET ? 1.4f : 3.0f);
-				float allowedDisp = speed * pRealEvt->m_frameTime;
+			{	
+				Physics* pPhysics = pSN->getFirstComponent<Physics>();
 
-				Vector3 dir = (m_targetPostion - curPos);
-				dir.normalize();
-				float dist = sqrt(dsqr);
-				if (dist > allowedDisp)
+				if (!pPhysics)
 				{
-					dist = allowedDisp; // can move up to allowedDisp
-					reached = false; // not reaching destination yet
+					printf("No physics component found\n");
+					return;
 				}
+				else
+				{
+					// not at the spot yet
+					Event_UPDATE* pRealEvt = (Event_UPDATE*)(pEvt);
+					float speed = (m_state == WALKING_TO_TARGET ? 1.4f : 3.0f);
+					float allowedDisp = speed * pRealEvt->m_frameTime;
 
-				// instantaneous turn
-				pSN->m_base.turnInDirection(dir, 3.1415f);
-				pSN->m_base.setPos(curPos + dir * dist);
+					std::vector<Physics*> collisions;
+					PhysicsManager::getInstance().checkCollisions(pPhysics, collisions);
+
+					if (collisions.empty() || !pPhysics->hitCar)
+					{
+						// printf("No collisions\n");
+						// no collisions
+						Vector3 dir = (m_targetPostion - curPos);
+						dir.normalize();
+						float dist = sqrt(dsqr);
+						if (dist > allowedDisp)
+						{
+							dist = allowedDisp; // can move up to allowedDisp
+							reached = false; // not reaching destination yet
+						}
+
+						// instantaneous turn
+						pSN->m_base.turnInDirection(dir, 3.1415f);
+						pSN->m_base.setPos(curPos + dir * dist);
+
+						pPhysics->setPosition(pSN->m_base.getPos());
+						pPhysics->setVelocity(speed*dir);
+					}
+					else
+					{
+						Vector3 dir = (m_targetPostion - curPos);
+						dir.normalize();
+						float dist = sqrt(dsqr);
+						if (dist > allowedDisp)
+						{
+							dist = allowedDisp; // can move up to allowedDisp
+							reached = false; // not reaching destination yet
+						}
+						// printf("Collision detected\n");
+						// Handle collision
+						for (auto collision : collisions)
+						{
+							pSN->m_base.setPos(pPhysics->resolveCollision(*collision, speed, pRealEvt->m_frameTime));
+							pPhysics->setPosition(pSN->m_base.getPos());
+						}
+						pPhysics->hitCar = false;
+					}
+
+					if (pPhysics->hitGround)
+					{
+						pPhysics->hitGround = false;
+					}
+					else
+					{
+						pSN->m_base.setPos(pPhysics->applyGravity(pRealEvt->m_frameTime));
+						pPhysics->setPosition(pSN->m_base.getPos());
+					}
+
+					
+				}				
 			}
 
 			if (reached)
@@ -190,6 +242,7 @@ void SoldierNPCMovementSM::do_UPDATE(PE::Events::Event *pEvt)
 			}
 		}
 	}
+	
 
 	//if (m_state == STANDING)
 	//{

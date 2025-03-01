@@ -193,7 +193,7 @@ int ClientCharacterControlGame::initGame()
 
 
 	
-    bool spawnALotOfMeshes = true;
+    bool spawnALotOfMeshes = false;
     
     int maxX = 20; // maybe need more to get framerate lower
     

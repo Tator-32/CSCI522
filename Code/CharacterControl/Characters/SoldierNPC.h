@@ -2,6 +2,7 @@
 #define _CHARACTER_CONTROL_SOLDIER_NPC_
 
 #include "PrimeEngine/Events/Component.h"
+#include "PhysicsManager.h"
 
 
 #include "../Events/Events.h"

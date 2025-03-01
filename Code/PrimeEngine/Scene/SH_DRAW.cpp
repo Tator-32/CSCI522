@@ -197,7 +197,7 @@ void SingleHandler_DRAW::do_GATHER_DRAWCALLS(Events::Event *pEvt)
     
     // debug testing of instance culling. do collision check instead.
     // remove false && to enable
-    if (pMeshCaller->m_performBoundingVolumeCulling && pDrawEvent)
+    if (pMeshCaller->m_performBoundingVolumeCulling && pDrawEvent && false)
     {
         pMeshCaller->m_numVisibleInstances = 0;
         

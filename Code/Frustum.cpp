@@ -36,9 +36,11 @@ namespace PE {
             upNew.normalize();
 
             Vector3 nearCenter = pos + forward * nearClip;
-            Vector3 farCenter = pos + forward * farClip * 0.8f;
+            // Vector3 farCenter = pos + forward * farClip * 0.8f;
+            Vector3 farCenter = pos + forward * farClip;
 
-            float tanFov = tan(verticalFov * 0.65f / 2.0f);
+            // float tanFov = tan(verticalFov * 0.65f / 2.0f);
+            float tanFov = tan(verticalFov / 2.0f);
             float nearHeight = 2.0f * nearClip * tanFov;
             float nearWidth = nearHeight * aspect;
             float farHeight = 2.0f * farClip * tanFov;

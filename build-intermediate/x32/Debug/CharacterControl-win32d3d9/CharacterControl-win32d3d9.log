@@ -1,2 +1,3 @@
-﻿SoldierNPC.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+﻿  SoldierNPCMovementSM.cpp
+SoldierNPC.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
   CharacterControl-win32d3d9.vcxproj -> B:\PEWorkspace\build\CharacterControl-win32d3d9.exe

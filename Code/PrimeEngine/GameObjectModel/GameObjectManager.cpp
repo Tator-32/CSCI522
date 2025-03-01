@@ -294,11 +294,21 @@ void GameObjectManager::do_CREATE_MESH(Events::Event *pEvt)
 		// need to acquire redner context for this code to execute thread-safe
 		m_pContext->getGPUScreen()->AcquireRenderContextOwnership(pRealEvent->m_threadOwnershipMask);
 		
-			PE::Handle hMeshInstance("MeshInstance", sizeof(MeshInstance));
-			MeshInstance *pMeshInstance = new(hMeshInstance) MeshInstance(*m_pContext, m_arena, hMeshInstance);
-			pMeshInstance->addDefaultComponents();
+		PE::Handle hMeshInstance("MeshInstance", sizeof(MeshInstance));
+		MeshInstance *pMeshInstance = new(hMeshInstance) MeshInstance(*m_pContext, m_arena, hMeshInstance);
+		pMeshInstance->addDefaultComponents();
 
-			pMeshInstance->initFromFile(pRealEvent->m_meshFilename, pRealEvent->m_package, pRealEvent->m_threadOwnershipMask);
+		pMeshInstance->initFromFile(pRealEvent->m_meshFilename, pRealEvent->m_package, pRealEvent->m_threadOwnershipMask);
+
+		PE::Handle hPhysics("Physics", sizeof(Physics));
+		Array<PrimitiveTypes::Float32>boundingbox = pMeshInstance->m_hAsset.getObject<Mesh>()->m_hPositionBufferCPU.getObject<PositionBufferCPU>()->m_boundingBox;
+		Vector3 min = Vector3(boundingbox[0], boundingbox[2], boundingbox[4]);
+		Vector3 max = Vector3(boundingbox[1], boundingbox[3], boundingbox[5]);
+		Physics *pPhysics = new(hPhysics) Physics(*m_pContext, m_arena, hPhysics, pRealEvent->m_pos, min, max);
+		pPhysics->m_name = pRealEvent->m_meshFilename;
+		pPhysics->addDefaultComponents();
+		pMeshInstance->addComponent(hPhysics);
+		PhysicsManager::getInstance().registerStaticCollider(pPhysics);
 			
 		
 		m_pContext->getGPUScreen()->ReleaseRenderContextOwnership(pRealEvent->m_threadOwnershipMask);

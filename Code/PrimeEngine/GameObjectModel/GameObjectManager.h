@@ -18,6 +18,9 @@
 
 #include "PrimeEngine/Utils/Networkable.h"
 
+#include "Physics.h"
+#include "PhysicsManager.h"
+
 // Sibling/Children includes
 namespace PE {
 namespace Components{

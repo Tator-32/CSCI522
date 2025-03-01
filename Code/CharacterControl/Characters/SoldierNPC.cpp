@@ -72,6 +72,14 @@ SoldierNPC::SoldierNPC(PE::GameContext &context, PE::MemoryArena arena, PE::Hand
 		addComponent(hSN, &allowedEvts[0]);
 	}
 
+	PE::Handle hPhysics("Physics", sizeof(Physics));
+	Physics* pPhysics = new(hPhysics) Physics(*m_pContext, m_arena, hPhysics, pEvt->m_pos, 1.0f);
+	pPhysics->m_name = "soldier";
+	pPhysics->useGravity = true;
+	pPhysics->addDefaultComponents();
+	pMainSN->addComponent(hPhysics);
+
+
 	int numskins = 1; // 8
 	for (int iSkin = 0; iSkin < numskins; ++iSkin)
 	{

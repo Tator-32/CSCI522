@@ -1,5 +1,7 @@
 B:\PEWorkspace\AssetsOut\Default\GPUPrograms\nums_spe.c;B:\PEWorkspace\build-intermediate\x32\Debug\PrimeEngine-win32d3d9\nums_spe.obj
 B:\PEWorkspace\Code\Frustum.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\PrimeEngine-win32d3d9\Frustum.obj
+B:\PEWorkspace\Code\Physics.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\PrimeEngine-win32d3d9\Physics.obj
+B:\PEWorkspace\Code\PhysicsManager.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\PrimeEngine-win32d3d9\PhysicsManager.obj
 B:\PEWorkspace\Code\PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_IndexBufferGPU.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\PrimeEngine-win32d3d9\D3D11_IndexBufferGPU.obj
 B:\PEWorkspace\Code\PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_ResourceBufferGPU.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\PrimeEngine-win32d3d9\D3D11_ResourceBufferGPU.obj
 B:\PEWorkspace\Code\PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_VertexBufferGPU.cpp;B:\PEWorkspace\build-intermediate\x32\Debug\PrimeEngine-win32d3d9\D3D11_VertexBufferGPU.obj

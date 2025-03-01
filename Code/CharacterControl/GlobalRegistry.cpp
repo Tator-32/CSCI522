@@ -2,6 +2,7 @@
 
 #include "GlobalRegistry.h"
 
+#include "Physics.h"
 #include "WayPoint.h"
 #include "Characters/SoldierNPC.h"
 #include "Characters/SoldierNPCAnimationSM.h"
@@ -51,6 +52,7 @@ void CharacterControl::Register(PE::Components::LuaEnvironment *pLuaEnv, PE::Glo
 					ServerGameObjectManagerAddon::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 				ClientSpaceShip::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 				SpaceShipGameControls::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
+				Physics::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 			}
 			// end root.CharacterControl.Components
 			pLuaEnv->EndRegistrationTable();

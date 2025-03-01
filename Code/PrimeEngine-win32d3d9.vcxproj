@@ -91,6 +91,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Frustum.h" />
+    <ClInclude Include="Physics.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="PrimeEngine\APIAbstraction\APIAbstractionDefines.h" />
     <ClInclude Include="PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_IndexBufferGPU.h" />
     <ClInclude Include="PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_ResourceBufferGPU.h" />
@@ -261,6 +263,8 @@
   <ItemGroup>
     <ClCompile Include="..\AssetsOut\Default\GPUPrograms\nums_spe.c" />
     <ClCompile Include="Frustum.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_IndexBufferGPU.cpp" />
     <ClCompile Include="PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_ResourceBufferGPU.cpp" />
     <ClCompile Include="PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_VertexBufferGPU.cpp" />
