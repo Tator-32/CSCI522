@@ -155,6 +155,7 @@ void DefaultAnimationSM::do_SCENE_GRAPH_UPDATE(Events::Event *pEvt)
 		// if looping make sure that the last frame plays deserved time, i.e. 31 frames play frame_time * 31 where last frame is blended with 0th frame
 		//if (frame >= (PrimitiveTypes::Float32)(anim.m_frames.m_size - (slot.m_looping ? 0 : 1)))
 
+		// This block is used to handle the case when animation is going to end
 		if (framesLeft < 0.0f)
 		{
 			if (slot.isLooping() || slot.needToStayOnLastFrame())
@@ -613,7 +614,15 @@ AnimationSlot *DefaultAnimationSM::setAnimation(
 	AnimSetBufferGPU *pAnimSetBufferGPU = pSkelInstance->m_hAnimationSetGPUs[animationSetIndex].getObject<AnimSetBufferGPU>();
 	AnimationSetCPU *pAnimSet = pAnimSetBufferGPU->m_hAnimationSetCPU.getObject<AnimationSetCPU>();
 	AnimationCPU &anim = pAnimSet->m_animations[(animationIndex + m_debugAnimIdOffset)];
-	AnimationSlot slot(animationSetIndex, (animationIndex + m_debugAnimIdOffset), 0, (PrimitiveTypes::Float32)(anim.m_frames.m_size-1), anim.m_startJoint, anim.m_endJoint, ACTIVE | additionalFlags /*| PARTIAL_BODY_ANIMATION | NOTIFY_ON_ANIMATION_END*/, weight);
+	// If you want to set start and end joint index, maybe can do it here
+	PrimitiveTypes::UInt32 startJoint = anim.m_startJoint;
+	PrimitiveTypes::UInt32 endJoint = anim.m_endJoint;
+	if (additionalFlags & PARTIAL_BODY_ANIMATION)
+	{
+		startJoint = 2;
+		endJoint = 36;
+	}
+	AnimationSlot slot(animationSetIndex, (animationIndex + m_debugAnimIdOffset), 0, (PrimitiveTypes::Float32)(anim.m_frames.m_size-1), startJoint, endJoint, ACTIVE | additionalFlags /*| PARTIAL_BODY_ANIMATION | NOTIFY_ON_ANIMATION_END*/, weight);
 	setSlot(goodSlot, slot);
 	return &m_animSlots[goodSlot];
 }

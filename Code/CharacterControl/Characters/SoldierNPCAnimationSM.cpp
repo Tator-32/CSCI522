@@ -80,9 +80,15 @@ void SoldierNPCAnimationSM::do_SoldierNPCAnimSM_Event_SHOOT(PE::Events::Event* p
 	if (m_curId != SoldierNPCAnimationSM::STAND_SHOOT)
 	{
 		m_curId = SoldierNPCAnimationSM::STAND_SHOOT;
-		setAnimation(0, SoldierNPCAnimationSM::STAND_SHOOT,
+		setAnimation(0, SoldierNPCAnimationSM::RUN,
 						0, 0, 1, 1,
 						PE::LOOPING);
+		setAnimation(0, SoldierNPCAnimationSM::STAND_SHOOT,
+				2, 2, 3, 3,
+				PE::LOOPING);
+		//setAnimation(0, SoldierNPCAnimationSM::STAND_SHOOT,
+		//				2, 2, 3, 3,
+		//				PE::LOOPING | PE::PARTIAL_BODY_ANIMATION);
 	}
 }
 

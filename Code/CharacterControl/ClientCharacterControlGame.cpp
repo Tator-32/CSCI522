@@ -255,7 +255,7 @@ int ClientCharacterControlGame::initGame()
 #endif
 	// m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('ccontrollvl0.x_level.levela', 'CharacterControl')");
 
-	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('ccontrollvl0.x_level.levela', 'CharacterControl')");
+	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('tutorial6.x_level.levela', 'CharacterControl')");
 
 	m_pContext->getGPUScreen()->AcquireRenderContextOwnership(m_pContext->m_gameThreadThreadOwnershipMask);
 	

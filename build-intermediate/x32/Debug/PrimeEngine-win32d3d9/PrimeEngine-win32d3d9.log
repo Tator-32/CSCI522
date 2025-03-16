@@ -1,2 +1,10 @@
-﻿  Physics.cpp
+﻿  DefaultAnimationSM.cpp
+B:\PEWorkspace\Code\PrimeEngine\Scene\DefaultAnimationSM.cpp(365,21): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\PrimeEngine\Scene\DefaultAnimationSM.cpp(391,41): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\PrimeEngine\Scene\DefaultAnimationSM.cpp(394,56): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\PrimeEngine\Scene\DefaultAnimationSM.cpp(429,22): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\PrimeEngine\Scene\DefaultAnimationSM.cpp(455,25): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\PrimeEngine\Scene\DefaultAnimationSM.cpp(442,6): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+B:\PEWorkspace\Code\PrimeEngine\Scene\DefaultAnimationSM.cpp(480,7): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+B:\PEWorkspace\Code\PrimeEngine\Scene\DefaultAnimationSM.cpp(508,6): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   PrimeEngine-win32d3d9.vcxproj -> B:\PEWorkspace\build\PrimeEngine-win32d3d9.lib
