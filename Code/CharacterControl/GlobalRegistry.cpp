@@ -17,6 +17,8 @@
 #include "Tank/ClientTank.h"
 #include "CharacterControl/Client/ClientSpaceShip.h"
 #include "CharacterControl/Client/ClientSpaceShipControls.h"
+#include "ParticleSystem.h"
+#include "ParticleMesh.h"
 
 
 using namespace PE::Components;
@@ -53,6 +55,7 @@ void CharacterControl::Register(PE::Components::LuaEnvironment *pLuaEnv, PE::Glo
 				ClientSpaceShip::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 				SpaceShipGameControls::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 				Physics::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
+				ParticleSystem::InitializeAndRegister(pLuaEnv, pRegistry, setLuaMetaDataOnly);
 			}
 			// end root.CharacterControl.Components
 			pLuaEnv->EndRegistrationTable();

@@ -437,6 +437,27 @@ namespace PE {
 		m_map.add("motionblur.fx", hMotionBlurfx);
 	}
 
+	{
+		Handle hEffect("EFFECT", sizeof(Effect));
+		Effect *pEffect = new(hEffect) Effect(*m_pContext, m_arena, hEffect);
+
+		pEffect->loadTechnique(
+			"ColoredMinimalMesh_Particle_VS", "main",
+			NULL, NULL, // geometry shader
+			"ColoredMinimalMesh_Particle_PS", "main",
+			NULL, NULL, // compute shader
+			PERasterizerState_SolidTriNoCull,
+			PEDepthStencilState_NoZBuffer,
+			PEAlphaBlendState_DefaultRGBLerp_A_DestUnchanged, // depth stencil, blend states
+			"ParticleTech"
+		);
+
+		pEffect->m_psInputFamily = EffectPSInputFamily::REDUCED_MESH_PS_IN;
+		pEffect->m_effectDrawOrder = EffectDrawOrder::Last;
+
+		m_map.add("ParticleTech", hEffect);
+	}
+
 	buildFullScreenBoard();
 
 	setupConstantBuffersAndShaderResources();

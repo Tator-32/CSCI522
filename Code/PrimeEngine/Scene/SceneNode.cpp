@@ -66,18 +66,18 @@ void SceneNode::do_MOVE(Events::Event *pEvt)
 void SceneNode::do_PRE_RENDER_needsRC(Events::Event* pEvt)
 {
 
-	MeshInstance *pMeshInstance = getFirstComponent<MeshInstance>();
-	if (pMeshInstance && pMeshInstance->m_hAsset.isValid())
-	{
-		Array<PrimitiveTypes::Float32> aabbv = pMeshInstance->m_hAsset.getObject<Mesh>()->m_hPositionBufferCPU.getObject<PositionBufferCPU>()->m_boundingBox;
-		if (aabbv.m_size == 6) // if we have bounding box
-		{
+	//MeshInstance *pMeshInstance = getFirstComponent<MeshInstance>();
+	//if (pMeshInstance && pMeshInstance->m_hAsset.isValid())
+	//{
+	//	Array<PrimitiveTypes::Float32> aabbv = pMeshInstance->m_hAsset.getObject<Mesh>()->m_hPositionBufferCPU.getObject<PositionBufferCPU>()->m_boundingBox;
+	//	if (aabbv.m_size == 6) // if we have bounding box
+	//	{
 
-			DebugRenderer::Instance()->createBoundingBox(m_worldTransform, Vector3(aabbv[0], aabbv[2], aabbv[4]), Vector3(aabbv[1], aabbv[3], aabbv[5]), Vector3(0.2f, 0.8f, 0.6f), 0);
-		
-		}
+	//		DebugRenderer::Instance()->createBoundingBox(m_worldTransform, Vector3(aabbv[0], aabbv[2], aabbv[4]), Vector3(aabbv[1], aabbv[3], aabbv[5]), Vector3(0.2f, 0.8f, 0.6f), 0);
+	//	
+	//	}
 
-	}
+	//}
 }
 
 

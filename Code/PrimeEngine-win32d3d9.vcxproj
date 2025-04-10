@@ -91,6 +91,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Frustum.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="PrimeEngine\APIAbstraction\APIAbstractionDefines.h" />
@@ -263,6 +264,7 @@
   <ItemGroup>
     <ClCompile Include="..\AssetsOut\Default\GPUPrograms\nums_spe.c" />
     <ClCompile Include="Frustum.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PrimeEngine\APIAbstraction\DirectX11\D3D11_GPUBuffers\D3D11_IndexBufferGPU.cpp" />
@@ -723,6 +725,8 @@
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Diffuse_A_0_PS.cgps" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Diffuse_A_RGBIntensity_PS.cgps" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Diffuse_PS.cgps" />
+    <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_Particle_PS.cgps" />
+    <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_Particle_VS.cgvs" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Shadowed_A_0_PS.cgps" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Shadowed_PS.fx" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Shadowed_VS.cgvs" />

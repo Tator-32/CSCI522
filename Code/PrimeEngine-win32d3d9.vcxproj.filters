@@ -1116,6 +1116,7 @@
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="ParticleSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\AssetsOut\Default\GPUPrograms\nums_spe.c">
@@ -1550,6 +1551,7 @@
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\AssetsOut\Basic\Levels\basic.x_PEObject0_polySu.lua">
@@ -3396,6 +3398,12 @@
     </None>
     <None Include="PrimeEngine\premake4-primeengine.lua">
       <Filter>PrimeEngine</Filter>
+    </None>
+    <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_Particle_VS.cgvs">
+      <Filter>AssetsOut\Default\GPUPrograms</Filter>
+    </None>
+    <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_Particle_PS.cgps">
+      <Filter>AssetsOut\Default\GPUPrograms</Filter>
     </None>
   </ItemGroup>
 </Project>

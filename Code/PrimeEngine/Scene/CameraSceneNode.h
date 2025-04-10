@@ -40,6 +40,16 @@ struct CameraSceneNode : public SceneNode
 	PE_DECLARE_IMPLEMENT_EVENT_HANDLER_WRAPPER(do_CALCULATE_TRANSFORMATIONS);
 	virtual void do_CALCULATE_TRANSFORMATIONS(Events::Event *pEvt);
 
+	Vector3 getUp()
+	{
+		return Vector3(m_worldTransform.m[0][1], m_worldTransform.m[1][1], m_worldTransform.m[2][1]);
+	}
+
+	Vector3 getRight()
+	{
+		return Vector3(m_worldTransform.m[0][0], m_worldTransform.m[1][0], m_worldTransform.m[2][0]);
+	}
+
 	// Individual events -------------------------------------------------------
 	
 	Matrix4x4 m_worldToViewTransform; // objects in world space are multiplied by this to get them into camera's coordinate system (view space)

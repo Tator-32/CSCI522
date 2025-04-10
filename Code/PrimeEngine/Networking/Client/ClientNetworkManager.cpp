@@ -27,6 +27,10 @@ extern "C"
 #include "PrimeEngine/Networking/StreamManager.h"
 #include "PrimeEngine/Networking/EventManager.h"
 
+#include "PrimeEngine/Scene/RootSceneNode.h"
+#include "ParticleMesh.h"
+#include "ParticleSystem.h"
+
 // Sibling/Children includes
 using namespace PE::Events;
 
@@ -176,6 +180,17 @@ void ClientNetworkManager::debugRender(int &threadOwnershipMask, float xoffset /
 	DebugRenderer::Instance()->createTextMesh(
 		PEString::s_buf, true, false, false, false, 0,
 		Vector3(xoffset, yoffset, 0), 1.0f, threadOwnershipMask);
+
+	if (!getFirstComponent<RootSceneNode>())
+	{
+		addComponent(RootSceneNode::InstanceHandle());
+	}
+	ParticleSystem *pParticleSystem = RootSceneNode::Instance()->getFirstComponent<ParticleSystem>();
+	if (pParticleSystem)
+	{
+		// printf("ClientNetworkManager::debugRender - ParticleSystem found\n");
+		pParticleSystem->loadFromParticleData_needsRC(threadOwnershipMask);
+	}	
 
 	if (m_clientId == -1)
 		return;

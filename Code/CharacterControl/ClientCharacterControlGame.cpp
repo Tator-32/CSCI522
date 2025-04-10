@@ -9,6 +9,7 @@
 #include "Characters/SoldierNPCAnimationSM.h"
 #include "CharacterControl/Characters/SoldierNPCAnimationSM.h"
 #include "CharacterControlContext.h"
+#include "ParticleSystem.h"
 #if PE_PLAT_IS_WIN32
 #include "test.h"
 #endif
@@ -80,12 +81,12 @@ int ClientCharacterControlGame::initGame()
 
 		
 #if !PE_API_IS_D3D11
-		if (!spawnALotOfSoldiersForGpuAnim)
-		{
-			for (int i = 0; i < 6; ++i)
-				((ClientGameObjectManagerAddon*)(pGameCtx->getGameObjectManagerAddon()))->createTank(
-				i, m_pContext->m_gameThreadThreadOwnershipMask);
-		}
+		//if (!spawnALotOfSoldiersForGpuAnim)
+		//{
+		//	for (int i = 0; i < 6; ++i)
+		//		((ClientGameObjectManagerAddon*)(pGameCtx->getGameObjectManagerAddon()))->createTank(
+		//		i, m_pContext->m_gameThreadThreadOwnershipMask);
+		//}
 #endif
 	}
 
@@ -195,19 +196,19 @@ int ClientCharacterControlGame::initGame()
 	
     bool spawnALotOfMeshes = false;
     
-    int maxX = 20; // maybe need more to get framerate lower
+    int maxX = 1; // maybe need more to get framerate lower
     
     if (spawnALotOfMeshes)
     {
         for (int ix = 0; ix < maxX; ++ix)
         {
-            for (int iy = 0; iy < 10; ++iy)
+            for (int iy = 0; iy < 1; ++iy)
             {
                 PE::Handle hSN("SCENE_NODE", sizeof(SceneNode));
                 SceneNode *pMainSN = new(hSN) SceneNode(*m_pContext, m_arena, hSN);
                 pMainSN->addDefaultComponents();
         
-                pMainSN->m_base.setPos(Vector3(ix * 2.0f, 0, -10.0f -iy * 2.0f));
+                pMainSN->m_base.setPos(Vector3(ix * 2.0f, 0, -iy * 2.0f));
 				// printf("ix = %f, iy = %f\n", ix * 2.0f, iy * 2.0f);
         
                 PE::Handle hImrodMeshInst = PE::Handle("MeshInstance", sizeof(MeshInstance));
@@ -222,6 +223,21 @@ int ClientCharacterControlGame::initGame()
             }
         }
     }
+
+	PE::Handle hParticleSystem("ParticleSystem", sizeof(ParticleSystem));
+	ParticleSystem *pParticleSystem = new(hParticleSystem) ParticleSystem(*m_pContext, m_arena, hParticleSystem);
+
+	pParticleSystem->addDefaultComponents();
+	 m_pContext->getMeshManager()->registerAsset(hParticleSystem);
+
+	PE::Handle hParticleMeshInstance("ParticleMeshInstance", sizeof(MeshInstance));
+	MeshInstance *pParticleMeshInstance = new(hParticleMeshInstance) MeshInstance(*m_pContext, m_arena, hParticleMeshInstance);
+	pParticleMeshInstance->addDefaultComponents();
+	pParticleMeshInstance->initFromRegisteredAsset(pParticleSystem);
+	RootSceneNode::Instance()->addComponent(hParticleMeshInstance);
+
+
+	// RootSceneNode::Instance()->addComponent(hParticleSystem);
 
 	
 #if PE_PLAT_IS_WIN32
@@ -255,7 +271,7 @@ int ClientCharacterControlGame::initGame()
 #endif
 	// m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('ccontrollvl0.x_level.levela', 'CharacterControl')");
 
-	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('tutorial6.x_level.levela', 'CharacterControl')");
+	m_pContext->getLuaEnvironment()->runString("LevelLoader.loadLevel('basic.x_level.levela', 'CharacterControl')");
 
 	m_pContext->getGPUScreen()->AcquireRenderContextOwnership(m_pContext->m_gameThreadThreadOwnershipMask);
 	
