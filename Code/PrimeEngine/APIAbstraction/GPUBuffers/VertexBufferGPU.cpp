@@ -314,6 +314,43 @@ void VertexBufferGPU::createGPUBufferFromSource_ColoredMinimalMesh(PositionBuffe
 #endif
 	setAPIValues();
 }
+void VertexBufferGPU::createGPUBufferFromSource_ParticleMesh(PositionBufferCPU& vb, ColorBufferCPU& cb, TexCoordBufferCPU& tcb, WRITE_MODES writeMode)
+{
+	PositionBufferCPU combined(*m_pContext, m_arena);
+	combined.m_values.reset((3 + 4 + 2) * (vb.m_values.m_size / 3));
+	PrimitiveTypes::UInt32 ivbval = 0;
+	PrimitiveTypes::UInt32 icbval = 0;
+	PrimitiveTypes::UInt32 itcbval = 0;
+
+	for (PrimitiveTypes::UInt32 iv = 0; iv < vb.m_values.m_size / 3; iv++)
+	{
+		PrimitiveTypes::Float32 x, y, z, r, g, b, a, u, v;
+		x = vb.m_values[ivbval++];
+		y = vb.m_values[ivbval++];
+		z = vb.m_values[ivbval++];
+
+		r = cb.m_values[icbval++];
+		g = cb.m_values[icbval++];
+		b = cb.m_values[icbval++];
+		a = cb.m_values[icbval++];
+
+		u = tcb.m_values[itcbval++];
+		v = tcb.m_values[itcbval++];
+
+		combined.m_values.add(x, y, z);
+		combined.m_values.add(r, g, b, a);
+		combined.m_values.add(u, v);
+	}
+
+	internalCreateGPUBufferFromCombined(combined, sizeof(PrimitiveTypes::Float32) * 9, writeMode);
+
+	combined.m_values.reset(0);
+
+	m_pBufferSetInfo = &VertexBufferGPUManager::Instance()->m_vertexBufferInfos[PEVertexFormatLayout_ParticleMesh_B0__P0f3_C0f4_TC0f2];
+
+	setAPIValues();
+}
+
 void VertexBufferGPU::createGPUBufferFromSource_ReducedMesh(PositionBufferCPU &vb, TexCoordBufferCPU &tcb, WRITE_MODES writeMode)
 {
 	PositionBufferCPU combined(*m_pContext, m_arena);

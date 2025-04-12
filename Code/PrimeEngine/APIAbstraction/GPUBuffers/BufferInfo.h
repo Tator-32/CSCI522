@@ -36,6 +36,7 @@ enum PESemanticType
 	PESemanticType_JointWeights,
 	PESemanticType_JointIndices,
 	PESemanticType_Color,
+	PESemanticType_ColorAlpha
 };
 
 enum PEPrimitveTopology
@@ -57,6 +58,7 @@ enum EPEVertexFormat
 	PEVertexFormat_ReducedSkin,
 	PEVertexFormat_StdSkin,
 	PEVertexFormat_DetailedSkin,
+	PEVertexFormat_ParticleMesh,
 	PEVertexFormat_Count
 };
 
@@ -81,6 +83,7 @@ enum EPEVertexFormatLayout
 	#if !PE_PLAT_IS_PSVITA 
 	PEVertexFormatLayout_DetailedSkin_B0__P0f3_B1__TC0f2_B2__N0f3_B3__T0f3_B4__BW0f4_B5__BW1f4_B6__BI0f4_B7__BI1f4,
 	#endif
+	PEVertexFormatLayout_ParticleMesh_B0__P0f3_C0f4_TC0f2,
 	PEVertexFormatLayout_Count
 };
 

@@ -67,7 +67,6 @@ struct COLORED_MINIMAL_MESH_PS_IN
     varying float3 pIn_iColor;
 
     #define COLORED_MINIMAL_MESH_PS_IN_FILL_FROM_SEPARATE_ATTRIBUTES(pIn) \
-        /*pIn.iPosH = gl_Position;*/ \
         pIn.iPosW = pIn_iPosW; \
         pIn.iColor = pIn_iColor;
 

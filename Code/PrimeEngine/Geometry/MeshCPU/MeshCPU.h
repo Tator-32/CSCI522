@@ -42,6 +42,7 @@ struct MeshCPU : PE::PEAllocatableAndDefragmentable
 	void ReadMesh(const char *filename, const char *package, const char *tag);
 	
 	void createEmptyMesh();
+	void createParticleMesh();
 	void createBillboardMesh();
 	void createBillboardMeshWithColorTexture(const char *textureFilename , const char *package, PrimitiveTypes::Float32 w = 1000.0f, PrimitiveTypes::Float32 h = 1000.0f, ESamplerState customSamplerState = SamplerState_Count);
 	void createBillboardMeshWithColorGlowTextures(const char *colorTextureFilename, const char *glowTextureFilename , const char *package,

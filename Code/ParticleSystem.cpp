@@ -20,8 +20,8 @@ namespace PE
 			m_spawnRate(8.0f),
 			m_particleLifetime(3.0f),
 			m_spawnPosition(Vector3(0.0f, 0.0f, 0.0f)),
-			m_spawnVelocity(Vector3(0.0f, 1.0f, 0.0f)),
-			m_particleSize(0.3f),
+			m_spawnVelocity(Vector3(0.0f, 2.0f, 0.0f)),
+			m_particleSize(0.2f),
 			m_loaded(false)
 		{
 			m_particles.reset(100);
@@ -61,11 +61,11 @@ namespace PE
 				p.m_position = m_spawnPosition;
 				p.m_velocity = m_spawnVelocity;
 				// Randomize the velocity slightly
-				p.m_velocity.m_x += (rand() % 1000) / 1000.0f - 0.5f;
-				p.m_velocity.m_y += (rand() % 1000) / 1000.0f - 0.5f;
-				p.m_velocity.m_z += (rand() % 1000) / 1000.0f - 0.5f;
+				p.m_velocity.m_x += (rand() % 1000) / 800.0f - 0.5f;
+				p.m_velocity.m_y += (rand() % 1000) / 800.0f - 0.5f;
+				p.m_velocity.m_z += (rand() % 1000) / 800.0f - 0.5f;
 				p.m_lifetime = m_particleLifetime;
-				p.m_color = Vector4(0.5f, 0.6f, 0.8f, 1.0f);
+				p.m_color = Vector4(1.0f, 1.0f, 0.0f, 0.5f);
 
 				m_particles.add(p);
 			}
@@ -106,7 +106,7 @@ namespace PE
 
 		void ParticleSystem::updateGPUBuffer()
 		{
-			const int floatsPerParticle = 6;
+			const int floatsPerParticle = 7;
 			int particleCount = m_particles.m_size; // 3 for position, 3 for color.
 			int vertexCount = particleCount * 4;
 
@@ -151,18 +151,25 @@ namespace PE
 			vertexData.add(color.m_x);
 			vertexData.add(color.m_y);
 			vertexData.add(color.m_z);
+			vertexData.add(color.m_w);
 		}
 
 		void ParticleSystem::loadFromParticleData_needsRC(int& threadOwnershipMask)
 		{
+			if (m_particles.m_size == 0)
+			{
+				return;
+			}
+
 			int totalVertexCount = m_particles.m_size * 4;
+			int totalVertexSize = 7;
 			int totalIndexCount = m_particles.m_size * 6;
 
 			MeshCPU& mcpu = *m_meshCPU.getObject<MeshCPU>();
 
 			if (!m_loaded)
 			{
-				mcpu.createEmptyMesh();
+				mcpu.createParticleMesh();
 			}
 
 			mcpu.m_manualBufferManagement = true;
@@ -170,13 +177,18 @@ namespace PE
 			PositionBufferCPU* pVB = mcpu.m_hPositionBufferCPU.getObject<PositionBufferCPU>();
 			ColorBufferCPU* pCB = mcpu.m_hColorBufferCPU.getObject<ColorBufferCPU>();
 			IndexBufferCPU* pIB = mcpu.m_hIndexBufferCPU.getObject<IndexBufferCPU>();
+			TexCoordBufferCPU* pTCB = mcpu.m_hTexCoordBufferCPU.getObject<TexCoordBufferCPU>();
+
+			
 
 			pIB->m_primitiveTopology = PEPrimitveTopology_TRIANGLES;
 			pIB->m_verticesPerPolygon = 3;
 
 			pVB->m_values.reset(totalVertexCount * 3);
-			pCB->m_values.reset(totalVertexCount * 3);
+			pCB->m_values.reset(totalVertexCount * 4);
 			pIB->m_values.reset(totalIndexCount);
+			pTCB->m_values.reset(totalVertexCount * 2);
+
 
 			if (totalVertexCount > 0)
 			{
@@ -195,13 +207,14 @@ namespace PE
 
 			for (int i = 0; i < totalVertexCount; ++i)
 			{
-				float x = m_vertexData[i * 6 + 0];
-				float y = m_vertexData[i * 6 + 1];
-				float z = m_vertexData[i * 6 + 2];
+				float x = m_vertexData[i * totalVertexSize + 0];
+				float y = m_vertexData[i * totalVertexSize + 1];
+				float z = m_vertexData[i * totalVertexSize + 2];
 
-				float r = m_vertexData[i * 6 + 3];
-				float g = m_vertexData[i * 6 + 4];
-				float b = m_vertexData[i * 6 + 5];
+				float r = m_vertexData[i * totalVertexSize + 3];
+				float g = m_vertexData[i * totalVertexSize + 4];
+				float b = m_vertexData[i * totalVertexSize + 5];
+				float a = m_vertexData[i * totalVertexSize + 6];
 
 				pVB->m_values.add(x);
 				pVB->m_values.add(y);
@@ -210,7 +223,9 @@ namespace PE
 				pCB->m_values.add(r);
 				pCB->m_values.add(g);
 				pCB->m_values.add(b);
-				//pCB->m_values.add(1.0f); // alpha
+				pCB->m_values.add(a);
+
+				pTCB->m_values.add(a, a);
 				// printf("ParticleSystem::loadFromParticleData_needsRC - Vertex %d Position: %f %f %f Color: %f %f %f\n", i, x, y, z, r, g, b); // Debug output
 			}
 

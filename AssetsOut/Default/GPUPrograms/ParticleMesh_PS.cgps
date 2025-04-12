@@ -1,0 +1,12 @@
+#ifndef ParticleMesh_PS_cg
+#define ParticleMesh_PS_cg
+#include "APIAbstraction.gpu"
+#include "ParticleMesh_Structs.fx" 
+
+float4 ParticleMesh_PS(PARTICLE_MESH_PS_IN pIn) : COLOR0
+{
+	return make_float4(pIn.iColor);
+}
+
+PS_wrapper_PARTICLE_MESH(ParticleMesh_PS)
+#endif

@@ -1,2 +1,5 @@
-﻿  EffectManagerEffects.cpp
+﻿  ParticleSystem.cpp
+B:\PEWorkspace\Code\ParticleSystem.cpp(74,22): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\ParticleSystem.cpp(232,22): warning C4018: '<': signed/unsigned mismatch
+B:\PEWorkspace\Code\ParticleSystem.cpp(254,29): warning C4018: '<': signed/unsigned mismatch
   PrimeEngine-win32d3d9.vcxproj -> B:\PEWorkspace\build\PrimeEngine-win32d3d9.lib

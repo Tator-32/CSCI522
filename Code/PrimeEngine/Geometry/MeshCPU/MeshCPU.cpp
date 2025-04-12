@@ -147,8 +147,8 @@ void MeshCPU::createEmptyMesh()
 	ColorBufferCPU *pcb = new(m_hColorBufferCPU) ColorBufferCPU(*m_pContext, m_arena);
 	pcb->createEmptyCPUBuffer();
 
-	//m_hTexCoordBufferCPU = Handle(TEXCOORD_BUFFER_CPU, sizeof(TexCoordBufferCPU));
-	//TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU();
+	//m_hTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
+	//TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
 	//ptcb->createBillboardCPUBuffer();
 
 	//m_hNormalBufferCPU = Handle("NORMAL_BUFFER_CPU", sizeof(NormalBufferCPU));
@@ -159,6 +159,35 @@ void MeshCPU::createEmptyMesh()
 
 	m_hMaterialSetCPU = Handle("MATERIAL_SET_CPU", sizeof(MaterialSetCPU));
 	MaterialSetCPU *pmscpu = new(m_hMaterialSetCPU) MaterialSetCPU(*m_pContext, m_arena);
+	pmscpu->createSetWithOneDefaultMaterial();
+}
+
+void MeshCPU::createParticleMesh()
+{
+	m_hPositionBufferCPU = Handle("VERTEX_BUFFER_CPU", sizeof(PositionBufferCPU));
+	PositionBufferCPU* pvb = new(m_hPositionBufferCPU) PositionBufferCPU(*m_pContext, m_arena);
+	pvb->createEmptyCPUBuffer();
+
+	m_hIndexBufferCPU = Handle("INDEX_BUFFER_CPU", sizeof(IndexBufferCPU));
+	IndexBufferCPU* pib = new(m_hIndexBufferCPU) IndexBufferCPU(*m_pContext, m_arena);
+	pib->createEmptyCPUBuffer();
+
+	m_hColorBufferCPU = Handle("COLOR_BUFFER_CPU", sizeof(ColorBufferCPU));
+	ColorBufferCPU* pcb = new(m_hColorBufferCPU) ColorBufferCPU(*m_pContext, m_arena);
+	pcb->createEmptyCPUBuffer();
+
+	m_hTexCoordBufferCPU = Handle("TEXCOORD_BUFFER_CPU", sizeof(TexCoordBufferCPU));
+	TexCoordBufferCPU *ptcb = new(m_hTexCoordBufferCPU) TexCoordBufferCPU(*m_pContext, m_arena);
+	ptcb->m_values.reset(0);
+
+	//m_hNormalBufferCPU = Handle("NORMAL_BUFFER_CPU", sizeof(NormalBufferCPU));
+	//NormalBufferCPU *pnb = new(m_hNormalBufferCPU) NormalBufferCPU();
+	//pnb->createBillboardCPUBuffer();
+
+	//m_hTangentBufferCPU
+
+	m_hMaterialSetCPU = Handle("MATERIAL_SET_CPU", sizeof(MaterialSetCPU));
+	MaterialSetCPU* pmscpu = new(m_hMaterialSetCPU) MaterialSetCPU(*m_pContext, m_arena);
 	pmscpu->createSetWithOneDefaultMaterial();
 }
 

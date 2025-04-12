@@ -154,6 +154,19 @@ Handle VertexBufferGPUManager::createFromSource_ColoredMinimalMesh(Handle hpb, H
 	return res;
 }
 
+Handle VertexBufferGPUManager::createFromSource_ParticleMesh(Handle hpb, Handle hcb, Handle htcb, bool useBufferRegistry)
+{
+	Handle res = Handle("VERTEX_BUFFER_GPU", sizeof(VertexBufferGPU));
+	VertexBufferGPU* pvbgpu = new(res) VertexBufferGPU(*m_pContext, m_arena);
+
+	pvbgpu->createGPUBufferFromSource_ParticleMesh(
+		*hpb.getObject<PositionBufferCPU>(),
+		*hcb.getObject<ColorBufferCPU>(),
+		*htcb.getObject<TexCoordBufferCPU>());
+
+	return res;
+}
+
 
 Handle VertexBufferGPUManager::createMatSetGPUFromMatSetCPU(Handle hMatSetCPU)
 {
@@ -519,6 +532,23 @@ void VertexBufferGPUManager::setupVertexBufferInfos()
 		m_layoutToFormatMap[info.m_vertexFormatLayout] = PEVertexFormat_DetailedSkin;
 	}
 	#endif
+
+	// Particle Mesh
+	{
+		PEVertexBufferInfo info(*m_pContext, m_arena, PEVertexFormatLayout_ParticleMesh_B0__P0f3_C0f4_TC0f2);
+		info.m_bufferInfos.reset(1);
+		PEVertexAttributeBufferInfo buf0;
+		// position
+		buf0.m_attributeInfos[buf0.m_numAttributes++] = PEVertexAttributeInfo(0 * 4, PEScalarType_Float, 3, PESemanticType_Position, "position", 0);
+		buf0.m_attributeInfos[buf0.m_numAttributes++] = PEVertexAttributeInfo(3 * 4, PEScalarType_Float, 4, PESemanticType_Color, "color", 0);
+		buf0.m_attributeInfos[buf0.m_numAttributes++] = PEVertexAttributeInfo(7 * 4, PEScalarType_Float, 2, PESemanticType_TexCoord, "texcoord", 0);
+		info.m_bufferInfos.add(buf0);
+
+		info.setAPIValues();
+
+		m_vertexBufferInfos[info.m_vertexFormatLayout] = info;
+		m_layoutToFormatMap[info.m_vertexFormatLayout] = PEVertexFormat_ParticleMesh;
+	}
 
 }
 

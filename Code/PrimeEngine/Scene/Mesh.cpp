@@ -181,6 +181,10 @@ void chooseEffects(MaterialCPU &curMatCpu, bool hasBlendShapes, EPEVertexFormat 
 			//shadowMapEffects.add(EffectManager::Instance()->getEffectHandle("StdMesh_ZOnly_Tech"));
 			//instanceEffects;//todo: create instance effects = EffectManager::Instance()->getEffectHandle("DetailedMesh_Shadowed_A_Glow_Tech");
 		}
+		else if (format == PEVertexFormat_ParticleMesh)
+		{
+			effects.add(EffectManager::Instance()->getEffectHandle("ParticleTech"));
+		}
 	}
 	else
 	{
@@ -321,7 +325,12 @@ EPEVertexFormat Mesh::updateGeoFromMeshCPU_needsRC(MeshCPU &mcpu, int &threadOwn
 	{
 		// no normals.
 		// for now we only allow minimal colored meshes
-		if (mcpu.m_hColorBufferCPU.isValid())
+		if (mcpu.m_hColorBufferCPU.isValid() && mcpu.m_hTexCoordBufferCPU.isValid())
+		{
+			// matSetCpu.removeMapsOfFamily(TextureFamily::NORMAL_MAP);
+			res = PEVertexFormat_ParticleMesh;
+		}
+		else if (mcpu.m_hColorBufferCPU.isValid())
 		{
 			if (matSetStats.setHasOneNormalMap)
 			{
@@ -332,7 +341,6 @@ EPEVertexFormat Mesh::updateGeoFromMeshCPU_needsRC(MeshCPU &mcpu, int &threadOwn
 				PEWARN("Geometry for mesh has tangent data, but no normal data, so discarding tangent buffer data");
 			if (mcpu.m_hSkinWeightsCPU.isValid())
 				PEWARN("Geometry for mesh has skin data, but no normal data so we are choosing minimal color buffer mesh, that doesnt have skinning, so discarding skinning buffer data");
-
 			res = PEVertexFormat_ColoredMinimalMesh;
 		}
 		else
@@ -395,6 +403,14 @@ EPEVertexFormat Mesh::updateGeoFromMeshCPU_needsRC(MeshCPU &mcpu, int &threadOwn
 				);
 		}
 		break;
+	case PEVertexFormat_ParticleMesh:
+	{
+		m_hVertexBufferGPU = VertexBufferGPUManager::Instance()->createFromSource_ParticleMesh(
+				mcpu.m_hPositionBufferCPU, 
+				mcpu.m_hColorBufferCPU,
+				mcpu.m_hTexCoordBufferCPU,
+				!mcpu.m_manualBufferManagement);
+		}
 	}
 	
 

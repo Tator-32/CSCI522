@@ -56,6 +56,7 @@ struct VertexBufferGPUManager : public PE::PEAllocatableAndDefragmentable
 	Handle createGPUBufferFromVBufTCBufSWBufNBuf(Handle hvb, Handle htcb, Handle hSWBuf, Handle hnb, bool useBufferRegistry);
 
 	Handle createFromSource_ColoredMinimalMesh(Handle hpb, Handle hcb, bool useBufferRegistry);
+	Handle createFromSource_ParticleMesh(Handle hpb, Handle hcb, Handle htcb,bool useBufferRegistry);
 
 	Handle createMatSetGPUFromMatSetCPU(Handle hMatSetCPU);
 

@@ -69,6 +69,7 @@ public:
 	void createGPUBuffer(PositionBufferCPU &vb, TexCoordBufferCPU &tcb,  TexCoordBufferCPU &tcb1);
 
 	void createGPUBufferFromSource_ColoredMinimalMesh(PositionBufferCPU &vb, ColorBufferCPU &cb, WRITE_MODES writeMode = CONSTANT);
+	void createGPUBufferFromSource_ParticleMesh(PositionBufferCPU &vb, ColorBufferCPU &cb, TexCoordBufferCPU &tcb, WRITE_MODES writeMode = CONSTANT);
 	void createGPUBufferFromSource_ReducedMesh(PositionBufferCPU &vb, TexCoordBufferCPU &tcb, WRITE_MODES writeMode = CONSTANT);
 	void createGPUBufferFromSource_StdMesh(PositionBufferCPU &vb, TexCoordBufferCPU &tcb, NormalBufferCPU &nb);
 	void createGPUBufferFromSource_DetailedMesh(PositionBufferCPU &vb, TexCoordBufferCPU &tcb, NormalBufferCPU &nb, TangentBufferCPU &tb);

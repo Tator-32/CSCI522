@@ -22,10 +22,10 @@ B:\PEWorkspace\Code\luasocket_dist\src\wsocket.c(364,19): message : consider usi
 B:\PEWorkspace\Code\luasocket_dist\src\wsocket.c(364,19): message : consider using '%lls' in the format string
 B:\PEWorkspace\Code\luasocket_dist\src\wsocket.c(364,19): message : consider using '%Ls' in the format string
 B:\PEWorkspace\Code\luasocket_dist\src\wsocket.c(364,19): message : consider using '%ws' in the format string
+B:\PEWorkspace\Code\luasocket_dist\src\udp.c(205,27): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
 B:\PEWorkspace\Code\luasocket_dist\src\inet.c(107,23): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
 B:\PEWorkspace\Code\luasocket_dist\src\inet.c(159,27): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
 B:\PEWorkspace\Code\luasocket_dist\src\inet.c(183,27): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
 B:\PEWorkspace\Code\luasocket_dist\src\inet.c(231,31): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
 B:\PEWorkspace\Code\luasocket_dist\src\inet.c(334,6): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-B:\PEWorkspace\Code\luasocket_dist\src\udp.c(205,27): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
   luasocket_dist-win32d3d9.vcxproj -> B:\PEWorkspace\build\luasocket_dist-win32d3d9.lib

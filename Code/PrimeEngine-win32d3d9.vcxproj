@@ -725,8 +725,8 @@
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Diffuse_A_0_PS.cgps" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Diffuse_A_RGBIntensity_PS.cgps" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Diffuse_PS.cgps" />
-    <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_Particle_PS.cgps" />
-    <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_Particle_VS.cgvs" />
+    <None Include="..\AssetsOut\Default\GPUPrograms\ParticleMesh_PS.cgps" />
+    <None Include="..\AssetsOut\Default\GPUPrograms\ParticleMesh_VS.cgvs" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Shadowed_A_0_PS.cgps" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Shadowed_PS.fx" />
     <None Include="..\AssetsOut\Default\GPUPrograms\StdMesh_Shadowed_VS.cgvs" />
@@ -1028,6 +1028,11 @@
     <None Include="PrimeEngine\Lua\peuuid.lua" />
     <None Include="PrimeEngine\Scene\Skeleton.lua" />
     <None Include="PrimeEngine\premake4-primeengine.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\AssetsOut\Default\GPUPrograms\ParticleMesh_Structs.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

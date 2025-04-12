@@ -442,17 +442,17 @@ namespace PE {
 		Effect *pEffect = new(hEffect) Effect(*m_pContext, m_arena, hEffect);
 
 		pEffect->loadTechnique(
-			"ColoredMinimalMesh_Particle_VS", "main",
+			"ParticleMesh_VS", "main",
 			NULL, NULL, // geometry shader
-			"ColoredMinimalMesh_Particle_PS", "main",
+			"ParticleMesh_PS", "main",
 			NULL, NULL, // compute shader
 			PERasterizerState_SolidTriNoCull,
-			PEDepthStencilState_NoZBuffer,
-			PEAlphaBlendState_DefaultRGBLerp_A_DestUnchanged, // depth stencil, blend states
+			PEDepthStencilState_ZBuffer,
+			PEAlphaBlendState_DefaultRGBLerp_A_DestUnchanged,
 			"ParticleTech"
 		);
 
-		pEffect->m_psInputFamily = EffectPSInputFamily::REDUCED_MESH_PS_IN;
+		pEffect->m_psInputFamily = EffectPSInputFamily::PARTICLE_PS_IN;
 		pEffect->m_effectDrawOrder = EffectDrawOrder::Last;
 
 		m_map.add("ParticleTech", hEffect);

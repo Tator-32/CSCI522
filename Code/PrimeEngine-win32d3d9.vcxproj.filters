@@ -3399,11 +3399,16 @@
     <None Include="PrimeEngine\premake4-primeengine.lua">
       <Filter>PrimeEngine</Filter>
     </None>
-    <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_Particle_VS.cgvs">
+    <None Include="..\AssetsOut\Default\GPUPrograms\ParticleMesh_VS.cgvs">
       <Filter>AssetsOut\Default\GPUPrograms</Filter>
     </None>
-    <None Include="..\AssetsOut\Default\GPUPrograms\ColoredMinimalMesh_Particle_PS.cgps">
+    <None Include="..\AssetsOut\Default\GPUPrograms\ParticleMesh_PS.cgps">
       <Filter>AssetsOut\Default\GPUPrograms</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\AssetsOut\Default\GPUPrograms\ParticleMesh_Structs.fx">
+      <Filter>AssetsOut\Default\GPUPrograms</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

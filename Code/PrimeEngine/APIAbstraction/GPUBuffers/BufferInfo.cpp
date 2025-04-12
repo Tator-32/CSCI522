@@ -22,6 +22,7 @@ const char *toString(EPEVertexFormat f)
 	case PEVertexFormat_ReducedSkin: return "ReducedSkin";
 	case PEVertexFormat_StdSkin: return "StdSkin";
 	case PEVertexFormat_DetailedSkin: return "DetailedSkin";
+	case PEVertexFormat_ParticleMesh: return "ParticleMesh";
 	
 	default: PEASSERT(false, "Unknown format. Have you added new one and not modify this function?"); return "";
 	};
@@ -39,6 +40,8 @@ EPEVertexFormat getFormatFromVSName(const char *vsFilename)
 		return PEVertexFormat_DetailedMesh;
 	if (StringOps::startsswith(vsFilename, "DetailedSkin_"))
 		return PEVertexFormat_DetailedSkin;
+	if (StringOps::startsswith(vsFilename, "ParticleMesh_"))
+		return PEVertexFormat_ParticleMesh;
 
 	return PEVertexFormat_Count;
 }
@@ -63,6 +66,7 @@ const char *toString(EPEVertexFormatLayout v)
 	#if !PE_PLAT_IS_PSVITA // vita supports up to 4 vertex streams
 	case PEVertexFormatLayout_DetailedSkin_B0__P0f3_B1__TC0f2_B2__N0f3_B3__T0f3_B4__BW0f4_B5__BW1f4_B6__BI0f4_B7__BI1f4: return "PEVertexFormatLayout_DetailedSkin_B0__P0f3_B1__TC0f2_B2__N0f3_B3__T0f3_B4__BW0f4_B5__BW1f4_B6__BI0f4_B7__BI1f4";
 	#endif
+	case PEVertexFormatLayout_ParticleMesh_B0__P0f3_C0f4_TC0f2: return "PEVertexFormatLayout_ParticleMesh_B0__P0f3_C0f4_TC0f2";
 	default: PEASSERT(false, "Unknown layout. Have you added new one and not modify this function?"); return "";
 	};
 }
@@ -183,6 +187,9 @@ void PEVertexAttributeInfo::elementSemanticToApiSemantic(PESemanticType sem, int
 		else{assert(!"This semantic order for this type is not supported. Make sure value is correct and add support if needed.");return;}
 	case PESemanticType_TexCoord:
 		if (semOrder == 0){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_TEXCOORD);out_semOrder = 0;return;}
+		else if(semOrder == 1){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_TEXCOORD);out_semOrder = 1;return;}
+		else if(semOrder == 2){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_TEXCOORD);out_semOrder = 2;return;}
+		else if(semOrder == 3){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_TEXCOORD);out_semOrder = 3;return;}
 		else{assert(!"This semantic order for this type is not supported. Make sure value is correct and add support if needed.");return;}
 	case PESemanticType_Color:
 		if (semOrder == 0){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_COLOR);out_semOrder = 0;return;}
@@ -198,6 +205,10 @@ void PEVertexAttributeInfo::elementSemanticToApiSemantic(PESemanticType sem, int
 			if (semOrder == 0){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_BLENDINDICES);out_semOrder = 0;return;}
 			else if (semOrder == 1){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_BLENDINDICES);out_semOrder = 1;return;}
 			else{assert(!"This semantic order for this type is not supported. Make sure value is correct and add support if needed.");return;}
+	case PESemanticType_ColorAlpha:
+		if (semOrder == 0){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_COLOR);out_semOrder = 1;return;}
+		else if (semOrder == 1){out_sem = API_CHOOSE_DX11_DX9(0 /*dx11 tracks semantics by strings*/, D3DDECLUSAGE_COLOR);out_semOrder = 0;return;}
+		else{assert(!"This semantic order for this type is not supported. Make sure value is correct and add support if needed.");return;}
 	default: assert(!"This PESemanticType is not supported, make sure value is correct and if needed add support for this type"); return;
 	}; // switch
 #endif
